@@ -53,17 +53,29 @@ sistema_control = ctrl.ControlSystem([rule1, rule2, rule3, rule4, rule5, rule6])
 simulacion = ctrl.ControlSystemSimulation(sistema_control)
 
 # Asignar valores de entrada
-simulacion.input['temperatura'] = 30  # Ejemplo de temperatura
-simulacion.input['ocupacion'] = 7    # Ejemplo de ocupación
+temp_val = 30  # Ejemplo de temperatura
+ocup_val = 7   # Ejemplo de ocupación
+simulacion.input['temperatura'] = temp_val
+simulacion.input['ocupacion'] = ocup_val
 
 # Ejecutar simulación
 simulacion.compute()
 
 # Mostrar resultados
-print(f"Nivel de enfriamiento: {simulacion.output['enfriamiento']}")
+print(f"Nivel de enfriamiento: {round(simulacion.output['enfriamiento'], 2)}")
 
-
+# Graficar funciones de membresía con valores de entrada y salida
 temperatura.view()
+plt.axvline(temp_val, color='red', linestyle='--', label=f'temperatura = {temp_val}')
+plt.legend()
+
 ocupacion.view()
+plt.axvline(ocup_val, color='red', linestyle='--', label=f'ocupación = {ocup_val}')
+plt.legend()
+
 enfriamiento.view()
+plt.axvline(simulacion.output['enfriamiento'], color='red', linestyle='--', label=f'enfriamiento = {round(simulacion.output["enfriamiento"], 2)}')
+plt.legend()
+
+# Mostrar todas las gráficas
 plt.show()
