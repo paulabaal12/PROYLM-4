@@ -1,6 +1,7 @@
 import numpy as np
 import skfuzzy as fuzz
 from skfuzzy import control as ctrl
+import matplotlib.pyplot as plt
 
 # Variables de entrada
 temperatura = ctrl.Antecedent(np.arange(15, 36, 1), 'temperatura')
@@ -46,3 +47,8 @@ rule5 = ctrl.Rule(temperatura['baja'] & ocupacion['alta'], enfriamiento['bajo'])
 #Si la temperatura es baja y la ocupación es baja, entonces el nivel de enfriamiento debe ser muy bajo o apagado
 rule6 = ctrl.Rule(temperatura['baja'] & ocupacion['baja'], enfriamiento['bajo'])
 
+
+temperatura.view()
+ocupacion.view()
+enfriamiento.view()
+plt.show()
