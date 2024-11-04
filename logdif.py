@@ -48,6 +48,21 @@ rule5 = ctrl.Rule(temperatura['baja'] & ocupacion['alta'], enfriamiento['bajo'])
 rule6 = ctrl.Rule(temperatura['baja'] & ocupacion['baja'], enfriamiento['bajo'])
 
 
+# Crear sistema de control
+sistema_control = ctrl.ControlSystem([rule1, rule2, rule3, rule4, rule5, rule6])
+simulacion = ctrl.ControlSystemSimulation(sistema_control)
+
+# Asignar valores de entrada
+simulacion.input['temperatura'] = 30  # Ejemplo de temperatura
+simulacion.input['ocupacion'] = 7    # Ejemplo de ocupación
+
+# Ejecutar simulación
+simulacion.compute()
+
+# Mostrar resultados
+print(f"Nivel de enfriamiento: {simulacion.output['enfriamiento']}")
+
+
 temperatura.view()
 ocupacion.view()
 enfriamiento.view()
