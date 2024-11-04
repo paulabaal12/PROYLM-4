@@ -14,6 +14,19 @@ temperatura['baja'] = fuzz.trimf(temperatura.universe, [15, 15, 22])
 temperatura['media'] = fuzz.trimf(temperatura.universe, [20, 25, 28])
 temperatura['alta'] = fuzz.trimf(temperatura.universe, [26, 35, 35])
 
+
+# Funciones de membresía para ocupación
+ocupacion['baja'] = fuzz.trimf(ocupacion.universe, [0, 0, 5])
+ocupacion['media'] = fuzz.trimf(ocupacion.universe, [3, 5, 7])
+ocupacion['alta'] = fuzz.trimf(ocupacion.universe, [5, 10, 10])
+
+# Funciones de membresía para enfriamiento
+enfriamiento['muy_bajo'] = fuzz.trimf(enfriamiento.universe, [0, 0, 25])
+enfriamiento['bajo'] = fuzz.trimf(enfriamiento.universe, [0, 25, 50])
+enfriamiento['medio'] = fuzz.trimf(enfriamiento.universe, [25, 50, 75])
+enfriamiento['alto'] = fuzz.trimf(enfriamiento.universe, [50, 75, 100])
+enfriamiento['muy_alto'] = fuzz.trimf(enfriamiento.universe, [75, 100, 100])
+
 #definir reglas
 #Si la temperatura es alta y la ocupación es alta, entonces el nivel de enfriamiento debe ser alto
 rule1 = ctrl.Rule(temperatura['alta'] & ocupacion['alta'], enfriamiento['alto'])
